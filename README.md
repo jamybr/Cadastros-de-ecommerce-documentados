@@ -139,7 +139,7 @@ Exemplos de uso:
          ?>
 
    * Descrição: Este script insere uma nova marca no banco de dados.  
-   * Uso: Quando o formulário de cadastro de marcas é submetido, os dados são enviados para este script, que insere a nova marca na tabela marca.
+   * Uso: Quando o formulário de cadastro de marcas é submetido, os dados são enviados para este script, que insere a nova marca na tabela `marca`.  
 
    ### 3. Gerenciamento de Produtos  
    #### Inserir Produto  
@@ -171,12 +171,111 @@ Exemplos de uso:
          ?>
 
    * Descrição: Este script insere um novo produto no banco de dados.  
-   * Uso: Quando o formulário de cadastro de produtos é submetido, os dados são enviados para este script, que insere o novo produto na tabela produtos.
+   * Uso: Quando o formulário de cadastro de produtos é submetido, os dados são enviados para este script, que insere o novo produto na tabela `produtos`.  
 
-   #### 
+   #### Buscar Produtos  
+            <?php
+         require_once('model/Produtos.class.php');
+         
+         $produtos = new Produtos();
+         $produtos->buscar();
+         ?>  
 
+   * Descrição: Este script busca e exibe produtos cadastrados no banco de dados.  
+   * Uso: Utilizado para listar todos os produtos disponíveis no banco de dados.
+
+   #### Resumo do Pedido  
+         <?php
+         require_once('model/Produtos.class.php');
+         
+         $produtos = new Produtos();
+         $produtos->resumo();
+         ?>  
+
+   * Descrição: Este script exibe um resumo detalhado de um pedido específico.  
+   * Uso: Mostra detalhes de um pedido, incluindo informações sobre os produtos incluídos.
+
+  ### 4. Gerenciamento de Carrinho de Compras  
+  #### Adicionar Itens ao Carrinho  
+    
+         <?php
+         require_once('../model/Carrinho.class.php');
+         
+         $carrinho = new Carrinho();
+         $carrinho->add();
+         ?>
+
+  * Descrição: Este script adiciona itens ao carrinho de compras.  
+  * Uso: Quando um usuário adiciona um item ao carrinho, este script captura a ação e atualiza o estado do carrinho no banco de dados ou na sessão.
+
+  #### Buscar Itens no Carrinho  
   
+         <?php
+         require_once('model/Carrinho.class.php');
+         
+         $carrinho = new Carrinho();
+         $carrinho->buscar();
+         ?>   
+  * Descrição: Este script busca e exibe itens no carrinho de compras.  
+  * Uso: Exibe todos os itens que o usuário adicionou ao carrinho, permitindo a visualização antes de finalizar a compra.
 
+  ### 5. Conexão com o Banco de Dados  
+  * Conexão com o Banco de Dados
+    
+         <?php
+         $user = 'root';
+         $pass = '';
+         $server = 'localhost';
+         $db = 'compra';
+         
+         $mysqli = mysqli_connect($server, $user, $pass, $db);
+         $mysqli->set_charset('utf8');
+         
+         if ($mysqli->connect_error){
+           die ('Connect Error');
+         }
+         ?>
+
+    * Descrição: Este script estabelece a conexão com o banco de dados MySQL.  
+    * Uso: Incluído em outros scripts para permitir a interação com o banco de dados. Configura a conexão utilizando as credenciais fornecidas e define o charset para UTF-8.
+   
+    ### Classes de Modelo
+    * Classe Carrinho
+   
+            class Carrinho {
+              public function add() {
+                // Lógica para adicionar itens ao carrinho
+           }
+           
+           public function buscar() {
+             // Lógica para buscar itens no carrinho
+           }
+            }  
+    * Descrição: Classe que gerencia as operações relacionadas ao carrinho de compras.  
+    * Métodos:  
+    `add()`: Adiciona um item ao carrinho.  
+    `buscar()`: Busca e retorna os itens no carrinho.  
+   
+    #### Classe Produtos  
+          class Produtos {
+        public function buscar() {
+          // Lógica para buscar produtos
+        }
+        
+        public function pedido() {
+          // Lógica para gerar pedido
+        }
+        
+        public function resumo() {
+          // Lógica para exibir resumo do pedido
+        }
+         }
+
+     * Descrição: Classe que gerencia as operações relacionadas aos produtos.   
+     * Métodos:  
+     `buscar()`: Busca e retorna os produtos cadastrados.  
+     `pedido()`: Gera um pedido com os produtos selecionados.  
+     `resumo()`: Gera um resumo detalhado de um pedido específico.  
 
 ## Funções em Javascript  
    ### 1. Interatividade com o carrinho de compras  
@@ -243,22 +342,31 @@ Exemplos de uso:
            });
          });
          </script>  
-
-
     
 ## ⌨️Tecnologias Utilizadas  
 
- * PHP  
- * CSS   
- * HTML  
- * GitHub  
- * Javacript  
+ ### Backend   
+ * PHP: Linguagem de programação utilizada para desenvolver o backend do projeto, incluindo a lógica de negócios e a interação com o banco de dados.
+ * MySQL: Sistema de gerenciamento de banco de dados utilizado para armazenar e gerenciar os dados do projeto.
 
+ ### Frontend  
+ * HTML5: Linguagem de marcação utilizada para estruturar o conteúdo das páginas web.  
+ * CSS3: Linguagem de estilos utilizada para definir a apresentação visual das páginas web.  
+ * JavaScript: Linguagem de programação utilizada para adicionar interatividade e funcionalidades dinâmicas nas páginas web.  
+
+ ### Frameworks e Bibliotecas  
+ * jQuery: Biblioteca JavaScript utilizada para simplificar a manipulação do DOM, eventos e requisições AJAX.
+
+ ### Outros  
+ * Apache: Servidor web utilizado para hospedar e servir o aplicativo PHP.  
+ * XAMPP: Pacote de software que inclui o servidor Apache, o banco de dados MySQL e o interpretador de scripts PHP, utilizado para facilitar o desenvolvimento e o teste do projeto localmente.  
+ 
 ## 📑Fontes consultadas  
 
- * Google   
  * Chat.openai  
- * [jQuery](https://jquery.com/): Biblioteca JavaScript utilizada para manipulação do DOM e eventos de forma simplificada.  
+ * [jQuery](https://jquery.com/)
+ * [Stack Overflow](https://stackoverflow.com/)  
+ * [PHP Documentation](https://www.php.net/docs.php)  
 
 ## 🤝🏻Colaboradores  
 
