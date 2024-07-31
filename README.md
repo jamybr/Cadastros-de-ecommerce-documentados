@@ -97,28 +97,175 @@
    `PHP` : Scripts que processam dados do usuário, interagem com o banco de dados e gerenciam a lógica de aplicação.  
 
 ## Funções em PHP  
+Exemplos de uso:  
+  ### 1. Adicionar uma categoria  
+  
+      <?php
+      include('controller/conexao.php');
+      
+      $descricao = $_POST['descricao'];
+      
+      $cad_categoria = "INSERT INTO categoria(DESCRICAO) VALUES ('$descricao')";
+      
+      if(mysqli_query($mysqli, $cad_categoria)){
+          echo "Categoria cadastrada com sucesso!";
+      }else{
+          echo "Erro: ". $cad_categoria . "<br>" . mysqli_error($mysqli);
+      }
+      mysqli_close($mysqli);
+      ?>  
+
+   * Descrição: Este script insere uma nova categoria no banco de dados.  
+   * Uso: Quando o formulário de cadastro de categorias é submetido, os dados são enviados para este script, que insere a nova categoria na tabela categoria.
+
+   ### 2. Gerenciamento de Marcas  
+   * Inserir Marca
+
+            <?php
+         include('controller/conexao.php');
+         
+         $marca = $_POST['descricao'];
+         
+         echo "<h3>Descricão: $marca </h3>";
+         
+         $cad_marca = "INSERT INTO marca(DESCRICAO) VALUES ('$marca')";
+         
+         if(mysqli_query($mysqli, $cad_marca)){
+             echo "<h1>Marca cadastrada com sucesso!</h1><br>";
+         } else {
+             echo "Erro: " . $cad_marca . "<br>" . mysqli_error($mysqli);
+         }
+         mysqli_close($mysqli);
+         ?>
+
+   * Descrição: Este script insere uma nova marca no banco de dados.  
+   * Uso: Quando o formulário de cadastro de marcas é submetido, os dados são enviados para este script, que insere a nova marca na tabela marca.
+
+   ### 3. Gerenciamento de Produtos  
+   #### Inserir Produto  
+
+              <?php
+         include_once('controller/conexao.php');
+         
+         $categoria = $_POST['seleciona_categoria'];
+         $marca = $_POST['seleciona_marca'];
+         $nome_produto = $_POST['nome'];
+         $descricao = $_POST['descricao'];
+         $estoque = $_POST['estoque'];
+         $preco = $_POST['preco'];
+         
+         $grava_produto = "INSERT INTO produtos (IDCATEGORIA, IDMARCA, NOME, DESCRICAO, ESTOQUE, PRECO) VALUES ('$categoria', '$marca', '$nome_produto', '$descricao', '$estoque', '$preco')";
+         
+         $resute_gravacao = mysqli_query($mysqli, $grava_produto);
+         if(mysqli_affected_rows($mysqli) != 0){
+             echo "<META HTTP-EQUIV=REFRESH CONTENT='0;URL=produtos.php'>
+             <script type='text/javascript'>
+               alert('Produto cadastrado com sucesso');
+             </script>";
+         } else {
+             echo "<META HTTP-EQUIV=REFRESH CONTENT='0;URL=produto.php'>
+             <script type='text/javascript'>
+               alert('Produto não cadastrado, tente novamente');
+             </script>";
+         }
+         ?>
+
+   * Descrição: Este script insere um novo produto no banco de dados.  
+   * Uso: Quando o formulário de cadastro de produtos é submetido, os dados são enviados para este script, que insere o novo produto na tabela produtos.
+
+   #### 
+
+  
+
 
 ## Funções em Javascript  
+   ### 1. Interatividade com o carrinho de compras  
+   * Adicionar Itens ao Carrinho
 
-## ⌨️Tecnologias Utilizadas
+         $(document).ready(function(){
+         $('#produtos ul li a#adicionar').click(function(a){
+          window.location.replace(this.href+"&qnt="+window.prompt("Qual o nº de produtos você deseja adicionar?"));
+          return false;
+         });
+         });
+     
+  * Descrição: Este script permite ao usuário adicionar uma quantidade específica de produtos ao carrinho.  
+  * Uso: Quando o usuário clica no link "adicionar", é exibido um prompt para que ele informe a quantidade de produtos a adicionar. A página é então redirecionada com a quantidade especificada como parâmetro na URL.
+
+   ### 2. Manipulação de formulários e dados  
+   * Envio de Formulário de Cadastro de Produtos  
+      
+           $(document).ready(function(){
+           $('#form-cadastro-produto').submit(function(event){
+             // Lógica personalizada para manipulação de formulário antes do envio
+           });
+         });  
+
+   * Descrição: Este script pode ser utilizado para manipular os dados do formulário de cadastro de produtos antes do envio.  
+   * Uso: Adicione validação ou manipulação de dados necessária antes de enviar o formulário para o servidor.
+
+  ### 3. Atualização dinâmica da interface  
+   * Atualizar conteúdo dinamicamente
+
+           $(document).ready(function(){
+           $('#atualizar-conteudo').click(function(){
+             $('#conteudo').load('controller/atualiza-conteudo.php');
+           });
+         });  
+
+   * Descrição: Este script carrega conteúdo de forma dinâmica dentro de um elemento da página.  
+   * Uso: Quando o usuário clica no botão "Atualizar Conteúdo", o script carrega novos dados de `atualiza-conteudo.php` e os insere no elemento `#conteudo`.
+
+  ### 4. Interações com a Página  
+  * Navegação entre Páginas
+
+        $(document).ready(function(){
+        $('#navegar-pagina').click(function(){
+          window.location.href = 'nova-pagina.php';
+        });
+        });  
+
+  * Descrição: Este script permite a navegação para uma nova página ao clicar em um botão ou link.  
+  * Uso: Quando o usuário clica no botão "Navegar Página", ele é redirecionado para `nova-pagina.php`.
+
+  ### Exemplo de Uso  
+  * Adicionar Itens ao Carrinho
+
+             <!-- HTML -->
+         <a href="adicionar-produto.php?id=1" id="adicionar">Adicionar Produto</a>
+         
+         <!-- JavaScript -->
+         <script>
+         $(document).ready(function(){
+           $('#produtos ul li a#adicionar').click(function(a){
+             window.location.replace(this.href+"&qnt="+window.prompt("Qual o nº de produtos você deseja adicionar?"));
+             return false;
+           });
+         });
+         </script>  
+
+
+    
+## ⌨️Tecnologias Utilizadas  
 
  * PHP  
  * CSS   
  * HTML  
  * GitHub  
- * Javacript
+ * Javacript  
 
 ## 📑Fontes consultadas  
 
  * Google   
- * Chat.openai
+ * Chat.openai  
+ * [jQuery](https://jquery.com/): Biblioteca JavaScript utilizada para manipulação do DOM e eventos de forma simplificada.  
 
-## 🤝🏻Colaboradores
+## 🤝🏻Colaboradores  
 
  * [Professor Leonardo Rocha](https://github.com/LeonardoRochaMarista)  
  * [Leonardo Rocha](https://github.com/LeonardoRochaMarista)
 
- ## ✒️Autores
+ ## ✒️Autores  
  * Esse projeto foi criado por [Jasminy Matias e Silva](https://github.com/jamybr)  
 
    
