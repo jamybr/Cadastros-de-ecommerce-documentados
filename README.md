@@ -13,7 +13,7 @@
 [Colaboradores](#colaboradores)  
 [Autores](#%EF%B8%8Fautores)  
 
-# Modelo da Marca cadastrada com sucesso:    
+# Modelo da "MARCA" cadastrada com sucesso:    
 
 ![Modelo da estrutura Marca do PHP MyADM](images/print-marca.png)  
 
