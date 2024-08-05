@@ -1,8 +1,6 @@
 <<<<<<< HEAD
 # Cadastros-de-ecommerce-documentados
 
-![Modelo da estrutura Marca do PHP MyADM](images/print-marca.png)  
-=======
 # Índice 
 
 [Cadastros-de-ecommerce-documentados](#cadastros-de-ecommerce-documentados-1)  
@@ -17,6 +15,8 @@
 [Autores](#%EF%B8%8Fautores)  
 
 # Cadastros-de-ecommerce-documentados  
+
+![Modelo da estrutura Marca do PHP MyADM](images/print-marca.png)  
 
 # 📌Cadastros-de-ecommerce-documentados  
 
