@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Cadastros-de-ecommerce-documentados
 
 # Índice 
