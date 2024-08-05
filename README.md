@@ -379,6 +379,3 @@ Exemplos de uso:
 
  ## ✒️Autores  
  * Esse projeto foi criado por [Jasminy Matias e Silva](https://github.com/jamybr)  
-
-   
->>>>>>> 4a90563dbbc75d68da637dd246ae710e7fd50781
